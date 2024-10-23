@@ -200,7 +200,7 @@ header {
   }
 
   .hamburger-menu {
-    display: flex;
+    display: none;
   }
 
   .navbar-menu.show {
@@ -920,7 +920,7 @@ input[name="category"]:focus {
     /* height: initial; */
   }
   .hamburger-menu {
-    display: flex;
+    display: none;
   }
 }
 
