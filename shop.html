@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Product Listing with Load More, Category Filter, and Sort by Price
+    </title>
+    <link rel="stylesheet" href="shop.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="navbar" role="navigation" aria-label="Main Navigation">
+          <div
+            class="hamburger-menu"
+            id="hamburger"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+            aria-controls="menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <a href="index.html">
+            <div class="navbar-title">VENIA</div>
+          </a>
+
+          <ul class="navbar-menu" id="menu">
+            <li id="home"><a href="index.html">Home</a></li>
+            <li id="women"><a href="shop.html?category=women">Women</a></li>
+            <li id="men"><a href="shop.html?category=men">Men</a></li>
+            <li id="smart-gear">
+              <a href="shop.html?category=smart-gear">Smart Gear</a>
+            </li>
+            <li id="accessories">
+              <a href="shop.html?category=accessories">Accessories</a>
+            </li>
+          </ul>
+
+          <div class="navbar-cart">
+            <a href="#" aria-label="View Cart">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-shopping-cart"
+                viewBox="0 0 24 24"
+              >
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path
+                  d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61l1.38-7.68H6"
+                ></path>
+              </svg>
+              <span class="cart-count" aria-live="polite">0</span>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <section class="banner-section" aria-label="Banner">
+      <div class="banner-text">
+        <h1>Men's Outerwear</h1>
+      </div>
+      <div class="banner-image">
+        <img
+          src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/homepage_copy_3_LZCVKpp.jpg?format=webp&w=1500&dpr=1.0"
+          alt="Woman on a mountain banner"
+        />
+      </div>
+    </section>
+    <div class="container">
+      <div class="product-wrapper">
+        <div class="filter-sec" aria-label="Filters">
+          <ul class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb">
+            <li><a href="#">Clothing</a></li>
+            <li><a href="#">Category</a></li>
+            <li id="currentBreadcrumb" aria-current="page">Outerwear</li>
+          </ul>
+          <div class="mobile-filters">
+            <button
+              class="mobile-category-filter"
+              aria-expanded="false"
+              aria-controls="categoryList"
+            >
+              Filter Results
+            </button>
+            <button
+              class="mobile-sort-filter sort-button"
+              data-sort=""
+              aria-expanded="false"
+              aria-controls="sortOptions"
+            >
+              Sort Items
+            </button>
+          </div>
+          <div class="filter-item-box">
+            <h2>Filters</h2>
+            <!-- Category Filter -->
+            <div class="title">Categories</div>
+            <div class="category-list" id="categoryList"></div>
+            <!-- Price Range Filter -->
+            <div class="title">Price Range</div>
+            <div class="price-filter">
+              <label for="minPrice">Min Price:</label>
+              <input
+                type="number"
+                id="minPrice"
+                placeholder="Min"
+                min="0"
+                value="0"
+              />
+              <label for="maxPrice">Max Price:</label>
+              <input
+                type="number"
+                id="maxPrice"
+                placeholder="Max"
+                min="0"
+                value="1000"
+              />
+            </div>
+            <!-- Availability Filter -->
+            <div class="title">Availability</div>
+            <div class="availability-filter">
+              <label>
+                <input type="checkbox" id="inStock" />
+                Only show in-stock items
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="products-sec" aria-label="Products">
+          <div class="products-header">
+            <div class="result-items" aria-live="polite"></div>
+            <div class="products-header">
+              <div class="result-items"></div>
+              <div class="search-sort">
+                <input
+                  type="text"
+                  id="searchBar"
+                  placeholder="Search products..."
+                  class="search-input"
+                  aria-label="Search Products"
+                />
+                <div class="select">
+                  <select
+                    name="format"
+                    id="sortOptions"
+                    class="sort-options"
+                    aria-label="Sort Products"
+                  >
+                    <option selected disabled>Sort</option>
+                    <option value="asc">Sort by Price: Low to High</option>
+                    <option value="desc">Sort by Price: High to Low</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="product-list"
+            id="productList"
+            aria-label="Product List"
+          ></div>
+          <button
+            class="load-more-btn"
+            id="loadMoreBtn"
+            aria-label="Load More Products"
+          >
+            Load More
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="toast" class="toast" aria-live="polite">Item added to cart</div>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>Account</h3>
+          <ul>
+            <li><a href="#" aria-label="Sign In">Sign In</a></li>
+            <li><a href="#" aria-label="Register">Register</a></li>
+            <li><a href="#" aria-label="Order Status">Order Status</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>About Us</h3>
+          <ul>
+            <li><a href="#" aria-label="Our Story">Our Story</a></li>
+            <li><a href="#" aria-label="Careers">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Help</h3>
+          <ul>
+            <li><a href="#" aria-label="Contact Us">Contact Us</a></li>
+            <li><a href="#" aria-label="Order Status">Order Status</a></li>
+            <li><a href="#" aria-label="Returns">Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Follow Us!</h3>
+          <ul>
+            <li>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore.
+              </p>
+            </li>
+          </ul>
+          <div class="social-icons">
+            <a href="#" aria-label="Follow us on Facebook"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="#" aria-label="Follow us on Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="Follow us on Twitter"
+              ><i class="fab fa-twitter"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom-main">
+        <div class="footer-bottom">
+          <h1>VENIA</h1>
+          <p class="company">
+            © Company Name Address Ave, City Name, State ZIP
+          </p>
+          <div class="footer-info">
+            <p>
+              <a href="#">Terms of Use</a>
+              <a href="#">Privacy Policy</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
